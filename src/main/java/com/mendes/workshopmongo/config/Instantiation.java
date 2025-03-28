@@ -2,6 +2,7 @@ package com.mendes.workshopmongo.config;
 
 import com.mendes.workshopmongo.domain.Post;
 import com.mendes.workshopmongo.domain.User;
+import com.mendes.workshopmongo.dto.AuthorDTO;
 import com.mendes.workshopmongo.repositories.PostRepository;
 import com.mendes.workshopmongo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,10 +33,11 @@ public class Instantiation implements CommandLineRunner {
         User u2 = new User(null, "Carl Smith", "carlsmith@gmail.com");
         User u3 = new User(null, "William DaFoe", "willdafoe@gmail.com");
 
-        Post p1 = new Post(null, sdf.parse("2025-01-12") , "How to center a div?", "It look like it's impossible", u1);
-        Post p2 = new Post(null, sdf.parse("2025-01-12") , "Are Brazil dangerous?", "I think that I'll go to Brazil", u1);
-
         userRepository.saveAll(Arrays.asList(u1, u2, u3));
+
+        Post p1 = new Post(null, sdf.parse("2025-01-12") , "How to center a div?", "It look like it's impossible", new AuthorDTO(u1));
+        Post p2 = new Post(null, sdf.parse("2025-01-12") , "Are Brazil dangerous?", "I think that I'll go to Brazil", new AuthorDTO(u1));
+
         postRepository.saveAll(Arrays.asList(p1, p2));
     }
 }
