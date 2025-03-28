@@ -1,6 +1,7 @@
 package com.mendes.workshopmongo.services;
 
 import com.mendes.workshopmongo.domain.User;
+import com.mendes.workshopmongo.dto.UserDTO;
 import com.mendes.workshopmongo.repositories.UserRepository;
 import com.mendes.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,13 @@ public class UserService {
         }
         User user = obj.get();
         return  user;
+    }
+
+    public User insert(User obj){
+        return repository.insert(obj);
+    }
+
+    public User fromDTO(UserDTO objDto){
+        return new User(objDto.id(), objDto.name(), objDto.email());
     }
 }
