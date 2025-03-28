@@ -6,6 +6,7 @@ import com.mendes.workshopmongo.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,5 +22,9 @@ public class PostService {
         }
         Post post = obj.get();
         return  post;
+    }
+
+    public List<Post> findByTitle(String text){
+        return repository.findByTitleContainingIgnoreCase(text);
     }
 }
